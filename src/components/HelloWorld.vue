@@ -13,59 +13,34 @@
         <h1 class="text-6xl font-heading font-bold">Vuetify</h1>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        <v-card
-          class="hero-card md:col-span-2"
-          image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
-          rounded="3xl"
-          variant="flat"
-        >
-          <template #prepend>
-            <v-avatar class="ml-2 mr-4" icon="mdi-rocket-launch-outline" size="60" variant="tonal" />
-          </template>
-
-          <template #image>
-            <v-img class="hidden md:flex" position="top right" />
-          </template>
-
-          <template #title>
-            <h2 class="text-2xl font-medium my-0">
-              Get started
-            </h2>
-          </template>
-
-          <template #subtitle>
-            <div class="leading-7">
-              Change this page by updating <v-code>components/HelloWorld.vue</v-code>.
+      <v-row>
+        <v-col cols="12" class="border-b py-4">
+          <div class="flex items-center gap-4">
+            <v-avatar icon="mdi-rocket-launch-outline" size="40" variant="tonal" />
+            <div>
+              <h2 class="my-0 text-lg font-medium">Get started</h2>
+              <div class="leading-7">
+                Change this page by updating <v-code>components/HelloWorld.vue</v-code>.
+              </div>
             </div>
-          </template>
-        </v-card>
+          </div>
+        </v-col>
 
-        <v-card
-          v-for="link in links"
-          :href="link.href"
-          :key="link.href"
-          :subtitle="link.subtitle"
-          :title="link.title"
-          class="
-            h-full py-3 rounded-3xl transition-[border-radius] hover:rounded-lg
-            flex items-center [&>.v-card-item]:w-full
-            group"
-          rel="noopener noreferrer"
-          target="_blank"
-          variant="flat"
-        >
-          <template #prepend>
-            <v-avatar :icon="link.icon" size="60" variant="tonal" class="ml-2 mr-4" />
-          </template>
-          <template #append>
-            <v-icon class="ml-1 opacity-0 transition group-hover:opacity-90 group-hover:-translate-x-1" icon="mdi-open-in-new" />
-          </template>
-          <template #subtitle>
-            <div class="line-clamp-2 text-wrap">{{ link.subtitle }}</div>
-          </template>
-        </v-card>
-      </div>
+        <v-col cols="3" class="font-medium">Href</v-col>
+        <v-col cols="3" class="font-medium">Icon</v-col>
+        <v-col cols="3" class="font-medium">Subtitle</v-col>
+        <v-col cols="3" class="font-medium">Title</v-col>
+        <template v-for="link in links" :key="link.href">
+          <v-col cols="3" class="break-all border-b py-4">
+            <a :href="link.href" rel="noopener noreferrer" target="_blank">{{ link.href }}</a>
+          </v-col>
+          <v-col cols="3" class="border-b py-4">
+            <v-icon :icon="link.icon" />
+          </v-col>
+          <v-col cols="3" class="border-b py-4">{{ link.subtitle }}</v-col>
+          <v-col cols="3" class="border-b py-4">{{ link.title }}</v-col>
+        </template>
+      </v-row>
     </div>
   </v-container>
 </template>
@@ -101,17 +76,4 @@
 
 <style scoped>
 @reference "../styles/tailwind.css";
-
-/*
-  1. mixing helper classes and @apply for demonstration purposes only
-  2. the classes below are NOT wrapped in any CSS layer, so they "win" over everything else
-*/
-.hero-card {
-  @apply py-3 md:pr-[120px] w-full transition-none;
-}
-
-:deep(.v-card) {
-  @apply bg-gray-200;
-  @apply dark:bg-black dark:bg-linear-to-r dark:from-primary/50 dark:to-primary/30 dark:text-white/80;
-}
 </style>
